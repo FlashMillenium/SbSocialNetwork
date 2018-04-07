@@ -58,6 +58,8 @@
     <modules>
         <module>eureka-discovery-service</module>
         <module>zuul-gateway-service</module>
+        <module>feign-server</module>
+        <module>feign-simple-client</module>
     </modules>
 
 </project>
