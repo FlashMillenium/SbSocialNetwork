@@ -1,0 +1,18 @@
+version: "3"
+services:
+  discovery-service:
+    image:  discovery-service
+    hostname: discovery-service
+    environment:
+      DISCOVERY_HOST: discovery-service
+  gateway-service:
+    image:  gateway-service
+    hostname: gateway-service
+    links:
+      - discovery-service
+    depends_on:
+      - discovery-service
+    ports:
+      - "8080:8080"
+    environment:
+      DISCOVERY_HOST: discovery-service
