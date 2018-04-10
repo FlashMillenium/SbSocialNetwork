@@ -9,11 +9,11 @@ zuul:
   routes:
     gateway:
       path: /gateway/**
-      url: http://localhost:8761
+      url: http://${DISCOVERY_HOST:localhost}:8761
 
 eureka:
   instanse:
     hostname: gateway-service
   client:
    serviceUrl:
-        defaultZone: http://localhost:8761/eureka/
+        defaultZone: http://${DISCOVERY_HOST:localhost}:8761/eureka/
