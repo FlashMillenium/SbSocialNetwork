@@ -18,10 +18,6 @@ feign:
   hystrix:
     enabled: true
 
-#turbine:
-#  aggregator:
-#    clusterConfig: FEIGN-SIMPLE-CLIENT
-
 logging:
   level:
     com:
