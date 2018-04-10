@@ -6,7 +6,10 @@
 
     <artifactId>eureka-discovery-service</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <modules>
+        <module>../sn-message-service</module>
+    </modules>
+    <packaging>pom</packaging>
 
     <parent>
         <groupId>ru.sberbank.gqw</groupId>
