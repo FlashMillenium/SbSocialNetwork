@@ -5,12 +5,12 @@ import org.springframework.stereotype.Component;
 import ru.sberbank.gqw.entity.Message;
 import ru.sberbank.gqw.util.HibernateUtil;
 
-import javax.transaction.Transactional;
+
 import java.util.List;
 
 @Component
 public class MessageDAOImpl implements MessageDAO {
-    //todo: надо ли закрывать сессии руками? найти нужную аннотацию
+
     public List<Message> getAll() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         List<Message> messages = session.createQuery("from Message ").list();
@@ -18,10 +18,12 @@ public class MessageDAOImpl implements MessageDAO {
         return messages;
     }
 
-    @Transactional
     public void sendMessage(Message message) {
         Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
         session.save(message);
+        session.getTransaction().commit();
+        System.out.println(message.toString());
         session.close();
     }
 }

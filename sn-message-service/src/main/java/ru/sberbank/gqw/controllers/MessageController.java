@@ -55,7 +55,6 @@ public class MessageController {
         return "message.create";
     }
 
-    //todo: принимает норм модель, возвращает обнуленную со всеми полями, кроме месседж
     @PostMapping("/message/send")
     public String sendMessage(@Valid @ModelAttribute("message") Message message,
                               BindingResult result, ModelMap model) {
