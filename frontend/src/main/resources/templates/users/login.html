@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: site-head">
+    <title>Login Page</title>
+
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <header th:replace="layout :: site-logo"/>
+        <div class="col-md-12 text-center">
+            <a href="registration.html" th:href="@{/users/registration}">[Go to Register]</a>
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+
+            <!--/*@thymesVar id="loginForm" type="ru.sberbank.front.forms.LoginForm"*/-->
+            <form method="post" th:object="${loginForm}">
+                <div><label for="username">Username:</label></div>
+                <input id="username" type="text" name="username" th:value="*{username}" />
+                <span class="formError" th:if="${#fields.hasErrors('username')}"
+                      th:errors="*{username}">Invalid username</span>
+
+                <div><label for="password" th:value="*{username}">Password:</label></div>
+                <input id="password" type="password" name="password" th:value="*{password}" />
+                <span class="formError" th:if="${#fields.hasErrors('password')}"
+                      th:errors="*{password}">Invalid password</span>
+
+                <div><input type="submit" value="Login"/>
+                    <a href="register.html" th:href="@{/users/register}">[Go to Register]</a></div>
+
+            </form>
+            <ul id="messages" th:with="notifyMessages=${session[T(ru.sberbank.front.services
+          .NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+                <li th:each="msg : ${notifyMessages}" th:text="${msg.text}"
+                    th:class="${#strings.toLowerCase(msg.type)}">
+                </li>
+                <span th:if="${notifyMessages}" th:remove="all" th:text="${session.remove(
+          T(ru.sberbank.front.services.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY)}"></span>
+
+            </ul>
+
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
+</body>
+</html>

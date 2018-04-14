@@ -60,6 +60,7 @@
         <module>eureka-discovery-service</module>
         <module>zuul-gateway-service</module>
         <module>user-service</module>
+        <module>frontend</module>
     </modules>
 
 </project>
