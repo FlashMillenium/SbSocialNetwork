@@ -8,7 +8,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.sberbank.gqw.dto.UserDTO;
-import ru.sberbank.gqw.model.UserEntity;
 import ru.sberbank.gqw.service.UserService;
 
 @RestController

@@ -4,7 +4,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import ru.sberbank.gqw.dto.UserDTO;
-import ru.sberbank.gqw.model.UserEntity;
 
 public interface UserService {
 
