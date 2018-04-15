@@ -9,7 +9,7 @@ import ru.sberbank.gqw.model.UserEntity;
 
 
 @Repository
-public interface  UserRepository extends JpaRepository<UserEntity, Long > {
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     UserEntity getOneByLogin(String login);
 
@@ -17,6 +17,4 @@ public interface  UserRepository extends JpaRepository<UserEntity, Long > {
     Page<UserEntity> getAllFriendsById(Long id, Pageable var1);
 
     boolean existsByLogin(String login);
-
-    boolean existsByPassword(String password);
 }

@@ -14,6 +14,7 @@ import ru.sberbank.gqw.dto.UserDTO;
 import ru.sberbank.gqw.model.UserEntity;
 import ru.sberbank.gqw.repository.UserRepository;
 
+import javax.transaction.Transactional;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -61,14 +62,15 @@ public class UserServiceImpl implements UserService {
             userAlreadyExistHeader.add(headerName, "User with this login already exist");
             return Optional.of(new ResponseEntity<>(userAlreadyExistHeader, HttpStatus.BAD_REQUEST));
         }
-        if (userRepository.existsByPassword(newUser.getPassword())) {
+        if (Objects.isNull(newUser.getPassword())) {
             HttpHeaders passAlreadyExistHeader = new HttpHeaders();
-            passAlreadyExistHeader.add(headerName, "User with this password already exist");
+            passAlreadyExistHeader.add(headerName, "Password must be set");
             return Optional.of(new ResponseEntity<>(passAlreadyExistHeader, HttpStatus.BAD_REQUEST));
         }
         return Optional.empty();
     }
 
+    @Transactional
     private ResponseEntity<UserDTO> addUserInBase(UserDTO newUser) {
         UserEntity toAddInBase = modelMapper.map(newUser, UserEntity.class);
         UserEntity savedInBase = userRepository.saveAndFlush(toAddInBase);
@@ -103,17 +105,15 @@ public class UserServiceImpl implements UserService {
             loginProblemHeader.add("newLogin", updateUser.getLogin());
             return Optional.of(new ResponseEntity<>(loginProblemHeader, HttpStatus.BAD_REQUEST));
         }
-        if(!fromBD.getPassword().equals(updateUser.getPassword())
-                && userRepository.existsByPassword(updateUser.getPassword())){
+        if (Objects.isNull(updateUser.getPassword())) {
             HttpHeaders passProblemHeader = new HttpHeaders();
-            passProblemHeader.add(messageHeader, "Problem with password updatable user.");
-            passProblemHeader.add("oldPassword", fromBD.getPassword());
-            passProblemHeader.add("newPassword", updateUser.getPassword());
+            passProblemHeader.add(messageHeader, "Updateble user don't have password");
             return Optional.of(new ResponseEntity<>(passProblemHeader, HttpStatus.BAD_REQUEST));
         }
         return Optional.empty();
     }
 
+    @Transactional
     private ResponseEntity<?> updateUserData(UserDTO updateUser) {
         UserEntity toUpdate = modelMapper.map(updateUser, UserEntity.class);
         UserEntity fromBD = userRepository.getOne(updateUser.getId());
@@ -123,51 +123,56 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<?> addFriend(Long id, UserDTO friendToAdd) {
+    public ResponseEntity<?> addFriend(Long id, Long friendId) {
+        Optional<ResponseEntity<?>> validateFriend = validateFriendData(id, friendId);
+        return validateFriend.orElseGet(() -> addFriendToBase(id, friendId));
+
+    }
+
+    @Transactional
+    private ResponseEntity<?> addFriendToBase(Long id, Long friendId) {
         UserEntity friendHolder = userRepository.getOne(id);
-        if(Objects.isNull(friendHolder)){
-            HttpHeaders header = new HttpHeaders();
-            header.add("UserMessage", "User with that id don't exist");
-            return new ResponseEntity<>(header, HttpStatus.BAD_REQUEST);
-        }
-        UserEntity friend = userRepository.getOne(friendToAdd.getId());
-        if(friendHolder.equals(friend)){
-            HttpHeaders header = new HttpHeaders();
-            header.add("UserMessage", "Can't be friend to yourself");
-            return new ResponseEntity<>(header, HttpStatus.BAD_REQUEST);
-        }
-        if(Objects.isNull(friend)){
-            HttpHeaders header = new HttpHeaders();
-            header.add("UserMessage", "Friend not found");
-            return new ResponseEntity<>(header, HttpStatus.BAD_REQUEST);
-        }
+        UserEntity friend = userRepository.getOne(friendId);
         friendHolder.getFriends().add(friend);
-        userRepository.flush();
+        userRepository.saveAndFlush(friendHolder);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
     @Override
-    public ResponseEntity<?> deleteFriend(Long id, UserDTO friendToDelete) {
+    public ResponseEntity<?> deleteFriend(Long id, Long friendId) {
+        Optional<ResponseEntity<?>> validateFriend = validateFriendData(id, friendId);
+        return validateFriend.orElseGet(() -> deleteFriendFromBase(id, friendId));
+
+    }
+
+    @Transactional
+    private ResponseEntity<?> deleteFriendFromBase(Long id, Long friendId) {
         UserEntity friendHolder = userRepository.getOne(id);
-        if(Objects.isNull(friendHolder)){
+        UserEntity friend = userRepository.getOne(friendId);
+        friendHolder.getFriends().remove(friend);
+        userRepository.saveAndFlush(friendHolder);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
+
+    private Optional<ResponseEntity<?>> validateFriendData(Long id, Long friendId) {
+        UserEntity friendHolder = userRepository.getOne(id);
+        if (Objects.isNull(friendHolder)) {
             HttpHeaders header = new HttpHeaders();
             header.add("UserMessage", "User with that id don't exist");
-            return new ResponseEntity<>(header, HttpStatus.BAD_REQUEST);
+            return Optional.of(new ResponseEntity<>(header, HttpStatus.BAD_REQUEST));
         }
-        UserEntity friend = userRepository.getOne(friendToDelete.getId());
-        if(friendHolder.equals(friend)){
+        UserEntity friend = userRepository.getOne(friendId);
+        if (friendHolder.equals(friend)) {
             HttpHeaders header = new HttpHeaders();
             header.add("UserMessage", "Can't be friend to yourself");
-            return new ResponseEntity<>(header, HttpStatus.BAD_REQUEST);
+            return Optional.of(new ResponseEntity<>(header, HttpStatus.BAD_REQUEST));
         }
-        if(Objects.isNull(friend)){
+        if (Objects.isNull(friend)) {
             HttpHeaders header = new HttpHeaders();
             header.add("UserMessage", "Friend not found");
-            return new ResponseEntity<>(header, HttpStatus.BAD_REQUEST);
+            return Optional.of(new ResponseEntity<>(header, HttpStatus.BAD_REQUEST));
         }
-        friendHolder.getFriends().remove(friend);
-        userRepository.flush();
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        return Optional.empty();
     }
 
 }

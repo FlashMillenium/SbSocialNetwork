@@ -39,12 +39,12 @@ public class UserController {
     }
 
     @DeleteMapping("/users/{id}/friends")
-    public ResponseEntity<?> deleteFriend(@PathVariable(value = "id") Long id, @RequestBody UserDTO friendToDelete) {
+    public ResponseEntity<?> deleteFriend(@PathVariable(value = "id") Long id, @RequestBody Long friendId) {
         return null;
     }
 
     @PutMapping("/users/{id}/friends")
-    public ResponseEntity<?> addFriend(@PathVariable(value = "id") Long id, @RequestBody UserDTO friendToAdd) {
+    public ResponseEntity<?> addFriend(@PathVariable(value = "id") Long id, @RequestBody  Long friendId) {
         return null;
     }
 

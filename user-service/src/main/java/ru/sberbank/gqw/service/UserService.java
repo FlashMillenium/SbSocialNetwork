@@ -11,17 +11,17 @@ public interface UserService {
     public ResponseEntity<UserDTO> getByLogin(String login);
 
 
-    public Page<UserDTO>  getFriends(Long id, Pageable pageable);
+    public Page<UserDTO> getFriends(Long id, Pageable pageable);
 
 
     public ResponseEntity<?> addUser(UserDTO newUser);
 
 
-    public ResponseEntity<?> updateUser( UserDTO updateUser);
+    public ResponseEntity<?> updateUser(UserDTO updateUser);
 
 
-    public ResponseEntity<?> deleteFriend( Long id,  UserDTO friendToDelete);
+    public ResponseEntity<?> deleteFriend(Long id, Long friendId);
 
-    public ResponseEntity<?> addFriend( Long id, UserDTO friendToAdd);
+    public ResponseEntity<?> addFriend(Long id, Long friendId);
 
 }
