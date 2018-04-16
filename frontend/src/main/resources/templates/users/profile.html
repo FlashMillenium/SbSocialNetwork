@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: site-head">
+    <title>Profile Page</title>
+    <style>
+        .fig {
+            text-align: center; /* Выравнивание по центру */
+        }
+    </style>
+</head>
+<body>
+<div class="col-md-12">
+    <p class="fig"><img th:src="@{/img/site-logo.png}" alt="Logo" style="width:60%"></p>
+
+</div>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-3">
+        <img th:src="@{/img/profile_foto_stub.png}" alt="Profile photo" style="width:50%">
+        <p><a href="registration.html" th:href="@{/users/edit}">[Link to edit profile]</a></p>
+        <p><a href="registration.html" th:href="@{/users/friends}">[Link to friends]</a></p>
+        <p><a href="registration.html" th:href="@{/users/groups}">[Link to groups]</a></p>
+        <p><a href="registration.html" th:href="@{/users/messages}">[Link to messages]</a></p>
+        <p><a href="registration.html" th:href="@{/users/photo}">[Link to photo]</a></p>
+    </div>
+    <div class="col-md-8 text-left">
+
+        <p>First Name</p>
+        <P>Last Name</P>
+        <p>Additional info</p>
+        <br>
+        <br>
+        <br>
+        <p>Post 1</p>
+        <p>Post 2</p>
+        <p>Post x</p>
+
+
+    </div>
+</div>
+</body>
+</html>

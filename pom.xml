@@ -19,6 +19,7 @@
         <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <lombok.version>1.16.20</lombok.version>
     </properties>
 
     <dependencyManagement>
@@ -46,13 +47,20 @@
             <version>${mockito-core.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <modules>
+        <module>dto</module>
         <module>eureka-discovery-service</module>
         <module>zuul-gateway-service</module>
-        <module>feign-server</module>
-        <module>feign-simple-client</module>
+        <module>user-service</module>
+        <module>frontend</module>
     </modules>
 
 </project>
