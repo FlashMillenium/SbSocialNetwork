@@ -8,7 +8,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.sberbank.gqw.dto.UserDTO;
-import ru.sberbank.gqw.model.UserEntity;
 import ru.sberbank.gqw.service.UserService;
 
 @RestController
@@ -39,12 +38,12 @@ public class UserController {
     }
 
     @DeleteMapping("/users/{id}/friends")
-    public ResponseEntity<?> deleteFriend(@PathVariable(value = "id") Long id, @RequestBody UserDTO friendToDelete) {
+    public ResponseEntity<?> deleteFriend(@PathVariable(value = "id") Long id, @RequestBody Long friendId) {
         return null;
     }
 
     @PutMapping("/users/{id}/friends")
-    public ResponseEntity<?> addFriend(@PathVariable(value = "id") Long id, @RequestBody UserDTO friendToAdd) {
+    public ResponseEntity<?> addFriend(@PathVariable(value = "id") Long id, @RequestBody  Long friendId) {
         return null;
     }
 
