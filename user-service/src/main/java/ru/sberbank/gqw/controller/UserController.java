@@ -34,17 +34,17 @@ public class UserController {
 
     @PutMapping("/users/update")
     public ResponseEntity<?> updateUser(@RequestBody UserDTO updateUser) {
-        return null;
+        return userService.updateUser(updateUser);
     }
 
     @DeleteMapping("/users/{id}/friends")
     public ResponseEntity<?> deleteFriend(@PathVariable(value = "id") Long id, @RequestBody Long friendId) {
-        return null;
+        return userService.deleteFriend(id, friendId);
     }
 
     @PutMapping("/users/{id}/friends")
     public ResponseEntity<?> addFriend(@PathVariable(value = "id") Long id, @RequestBody  Long friendId) {
-        return null;
+        return userService.addFriend(id, friendId);
     }
 
 
