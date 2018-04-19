@@ -13,7 +13,7 @@ public interface UserService {
     public Page<UserDTO> getFriends(Long id, Pageable pageable);
 
 
-    public ResponseEntity<?> addUser(UserDTO newUser);
+    public ResponseEntity<UserDTO> addUser(UserDTO newUser);
 
 
     public ResponseEntity<?> updateUser(UserDTO updateUser);

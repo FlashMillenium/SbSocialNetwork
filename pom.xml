@@ -61,6 +61,7 @@
         <module>zuul-gateway-service</module>
         <module>user-service</module>
         <module>frontend</module>
+        <module>image-service</module>
     </modules>
 
 </project>
