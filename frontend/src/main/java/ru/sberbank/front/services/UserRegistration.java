@@ -16,5 +16,5 @@ import ru.sberbank.gqw.dto.UserDTO;
 @FeignClient(name = "user-service")
 public interface UserRegistration {
     @PostMapping("/users/add")
-    ResponseEntity<?> addUser(@RequestBody UserDTO newUser);
+    ResponseEntity<UserDTO> addUser(@RequestBody UserDTO newUser);
 }
