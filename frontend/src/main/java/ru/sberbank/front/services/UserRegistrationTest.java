@@ -1,6 +1,7 @@
 package ru.sberbank.front.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +24,7 @@ public class UserRegistrationTest {
     public ResponseEntity<UserDTO> getRegistrFromMicroserv(String passwd, String login) {
         userDTO.setPassword(passwd);
         userDTO.setLogin(login);
-        return usrReg.addUser(userDTO);
+        ResponseEntity<UserDTO> response = usrReg.addUser(userDTO);
+        return response;
     }
 }
