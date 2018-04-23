@@ -18,7 +18,7 @@ public class RegistrationController {
     UserRegistrationTest userRegistration;
 
     @RequestMapping(value = "users/registration", method = RequestMethod.GET)
-    public String registrPage() {
+    public String registrPageGet() {
 //        ResponseEntity<UserDTO> registrFromMicroserv = userRegistration.getRegistrFromMicroserv("aaa", "bbb");
 //        System.out.println(registrFromMicroserv.getStatusCode().getReasonPhrase());
 //        System.out.println("!!!!!");
@@ -27,6 +27,7 @@ public class RegistrationController {
     }
     @RequestMapping(value = "users/registration", method = RequestMethod.POST)
     public String registrPagePost(HttpServletRequest request) {
+//        Add processing
         ResponseEntity<UserDTO> registrFromMicroserv = userRegistration.getRegistrFromMicroserv(request.getParameter("password"), request.getParameter("login"));
         return "redirect:login";
     }
