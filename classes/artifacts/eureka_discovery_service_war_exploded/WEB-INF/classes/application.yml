@@ -1,0 +1,22 @@
+spring:
+ application:
+  name: eureka-service
+
+server:
+  port: 8761
+
+eureka:
+  instanse:
+    hostname: eureka-service
+  client:
+    registerWithEureka: true
+    fetchRegistry: false
+  dashboard:
+    enabled: false
+
+logging:
+  level:
+    com:
+      netflix:
+        eureka: OFF
+        discovery: OFF

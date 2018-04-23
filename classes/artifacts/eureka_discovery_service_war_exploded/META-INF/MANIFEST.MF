@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Implementation-Version: 1.0-SNAPSHOT
+Built-By: ekise
+Implementation-Vendor-Id: ru.sberbank.gqw
+Created-By: IntelliJ IDEA
+Build-Jdk: 9.0.4
+Main-Class: ${start-class}
+
