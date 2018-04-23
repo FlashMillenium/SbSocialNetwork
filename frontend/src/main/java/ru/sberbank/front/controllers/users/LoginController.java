@@ -17,6 +17,7 @@ import ru.sberbank.front.services.UsersLoginTest;
 import ru.sberbank.gqw.dto.UserDTO;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -67,13 +68,13 @@ UsersLoginTest usersLoginTest;
     }
 
     @RequestMapping(value = "users/login", method = RequestMethod.POST)
-    public String loginPagePost(HttpServletRequest request) {
+    public String loginPagePost(HttpServletRequest request, HttpSession session) {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        System.out.println("LoginContr " + login);
-        System.out.println("LoginContr " + password);
+
         ResponseEntity<UserDTO> loginFromMicroserv = usersLoginTest.getLoginFromMicroserv(login);
         if (loginFromMicroserv.getBody().getPassword().equals(password)) {
+            session.setAttribute("username", login);
             return "redirect:profile";
         } else {
             return "redirect:login";
