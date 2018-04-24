@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: site-head">
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Edit Profile</title>
+    </head>
+<body>
+<header th:replace="layout :: site-logo"/>
+<div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+        <form action="/users/edit" method="post">
+            <div class="form-group">
+                <label for="firstName">First name:</label>
+                <input name="firstName" , type="text" class="form-control" id="firstName">
+
+                <label for="lastName">Last name:</label>
+                <input name="lastName" , type="text" class="form-control" id="lastName">
+
+                <label for="dateOfBirth">Date of birth:</label>
+                <input name="dateOfBirth" , type="date" class="form-control" id="dateOfBirth">
+                <br>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-4"></div>
+</div>
+
+</body>
+</html>

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import ru.sberbank.gqw.dto.UserDTO;
 
 @Service
-public class UserProfileTest {
+public class UserProfileService {
     @Autowired
     UserLogin userLogin;
     public UserDTO getUserProfile() {

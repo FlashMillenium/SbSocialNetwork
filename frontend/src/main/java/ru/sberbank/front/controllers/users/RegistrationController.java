@@ -5,8 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-import ru.sberbank.front.services.UserRegistrationTest;
+import ru.sberbank.front.services.UserRegistrationService;
 import ru.sberbank.gqw.dto.UserDTO;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class RegistrationController {
     @Autowired
-    UserRegistrationTest userRegistration;
+    UserRegistrationService userRegistration;
 
     @RequestMapping(value = "users/registration", method = RequestMethod.GET)
     public String registrPageGet() {

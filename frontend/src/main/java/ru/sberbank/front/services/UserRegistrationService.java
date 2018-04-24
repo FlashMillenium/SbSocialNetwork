@@ -7,15 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.sberbank.gqw.dto.UserDTO;
 
-/**
- * TODO: comment
- *
- * @author Dmitriy Bobrov (bobrov.dmitriy@gmail.com)
- * @since 19.04.2018
- */
+
 
 @Service
-public class UserRegistrationTest {
+public class UserRegistrationService {
     @Autowired
     private UserRegistration usrReg;
     private UserDTO userDTO = new UserDTO();
