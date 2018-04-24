@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<table>
+    <th:block th:each="message : ${messages}">
+        <tr>
+            <td th:text="${message.getSenderId()}">...</td>
+            <td th:text="${message.getRecipientId()}">...</td>
+        </tr>
+        <tr>
+            <td colspan="2" th:text="${message.getMessage()}">...</td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

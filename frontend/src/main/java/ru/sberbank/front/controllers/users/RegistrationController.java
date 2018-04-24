@@ -4,20 +4,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.sberbank.front.services.UserRegistrationTest;
+import org.springframework.web.bind.annotation.RequestMethod;
+import ru.sberbank.front.services.UserRegistrationService;
 import ru.sberbank.gqw.dto.UserDTO;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
 public class RegistrationController {
     @Autowired
-    UserRegistrationTest userRegistration;
+    UserRegistrationService userRegistration;
 
-    @RequestMapping(value = "users/registration")
-    public String registrPage() {
-        ResponseEntity<UserDTO> registrFromMicroserv = userRegistration.getRegistrFromMicroserv("aaa", "bbb");
-        System.out.println("!!!!!");
-        System.out.println(registrFromMicroserv.getBody().getId());
-        return "users/profile";
+    @RequestMapping(value = "users/registration", method = RequestMethod.GET)
+    public String registrPageGet() {
+//        ResponseEntity<UserDTO> registrFromMicroserv = userRegistration.getRegistrFromMicroserv("aaa", "bbb");
+//        System.out.println(registrFromMicroserv.getStatusCode().getReasonPhrase());
+//        System.out.println("!!!!!");
+//        System.out.println(registrFromMicroserv.getBody().getId());
+        return "users/registration";
+    }
+    @RequestMapping(value = "users/registration", method = RequestMethod.POST)
+    public String registrPagePost(HttpServletRequest request) {
+//        Add processing
+        ResponseEntity<UserDTO> registrFromMicroserv = userRegistration.getRegistrFromMicroserv(request.getParameter("password"), request.getParameter("login"));
+        return "redirect:login";
     }
 }
