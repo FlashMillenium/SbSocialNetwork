@@ -18,5 +18,5 @@ public class AlbumDTO {
 
     private String name;
 
-    private File albumCover;
+    private Long albumCoverId;
 }

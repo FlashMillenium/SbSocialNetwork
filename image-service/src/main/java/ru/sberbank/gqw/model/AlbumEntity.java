@@ -4,13 +4,13 @@ package ru.sberbank.gqw.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "albums")
 @Getter
 @Setter
-@ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = "albumCover")
 @AllArgsConstructor
 @NoArgsConstructor
 @RequiredArgsConstructor
@@ -29,5 +29,12 @@ public class AlbumEntity {
     private String name;
 
     @ManyToOne
+    @JoinColumn(name="cover_id")
     private ImageEntity albumCover;
+
+    public String toString() {
+        Long albumCoverId = Objects.nonNull(this.getAlbumCover()) ? this.getAlbumCover().getId() : null;
+        return "AlbumEntity(id=" + this.getId() + ", userId=" + this.getUserId() + ", name=" + this.getName() +
+                ", albumCoverId=" + albumCoverId  + ")";
+    }
 }

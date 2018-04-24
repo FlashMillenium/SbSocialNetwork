@@ -10,7 +10,6 @@ import java.io.File;
 @Table(name = "images")
 @Getter
 @Setter
-@ToString
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,9 +30,14 @@ public class ImageEntity {
 
     @NonNull
     @ManyToOne
+    @JoinColumn(name="parent_id", nullable=false)
     private AlbumEntity album;
 
     @Column(name = "description")
     @Lob
     private String description;
+
+    public String toString() {
+        return "ImageEntity(id=" + this.getId() + ", name=" + this.getName() + ", imagePath=" + this.getImagePath() + ", albumId=" + this.getAlbum().getId() + ", description=" + this.getDescription() + ")";
+    }
 }

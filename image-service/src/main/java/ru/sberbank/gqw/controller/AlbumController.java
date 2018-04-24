@@ -1,15 +1,13 @@
 package ru.sberbank.gqw.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.autoconfigure.ActuatorMetricWriter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.sberbank.gqw.dto.AlbumDTO;
 import ru.sberbank.gqw.dto.ImageDTO;
-import ru.sberbank.gqw.model.AlbumEntity;
 import ru.sberbank.gqw.service.AlbumService;
 
 @RestController
@@ -30,22 +28,22 @@ public class AlbumController {
     }
 
     @PostMapping("/album")
-    public RequestEntity<AlbumDTO> saveAlbum(@RequestBody AlbumDTO album) {
+    public ResponseEntity<AlbumDTO> saveAlbum(@RequestBody AlbumDTO album) {
         return albumService.saveAlbum(album);
     }
 
     @DeleteMapping("/albums")
-    public RequestEntity<?> deleteAlbum(@RequestBody Long albumId) {
+    public ResponseEntity<?> deleteAlbum(@RequestBody Long albumId) {
         return albumService.deleteAlbum(albumId);
     }
 
     @DeleteMapping("/images")
-    public RequestEntity<?> deleteImage(@RequestBody ImageDTO deleteImage) {
+    public ResponseEntity<?> deleteImage(@RequestBody ImageDTO deleteImage) {
         return albumService.deleteImage(deleteImage);
     }
 
     @PostMapping("/images/{albumId}")
-    public RequestEntity<ImageDTO> saveImage(@PathVariable(value = "albumId") Long albumId, @RequestBody String name, @RequestBody byte[] data) {
+    public ResponseEntity<ImageDTO> saveImage(@PathVariable(value = "albumId") Long albumId, @RequestBody String name, @RequestBody byte[] data) {
         return albumService.saveImage(albumId, name, data);
     }
 }

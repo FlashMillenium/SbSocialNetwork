@@ -16,7 +16,9 @@ public class ImageDTO {
 
     private File imagePath;
 
-    private AlbumDTO album;
+    private Long albumId;
+
+    private String name;
 
     private String description;
 }

@@ -22,7 +22,7 @@ public class ImageProcessorTest {
     ImageProcessor ip;
 
     @Test
-    public void getStr() throws IOException {
+    public void checkFileIsWrittenInNeededFolder() throws IOException {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         String file = classloader.getResource("nginx.png").getFile();
         byte[] bytes = FileUtils.readFileToByteArray(new File(file));

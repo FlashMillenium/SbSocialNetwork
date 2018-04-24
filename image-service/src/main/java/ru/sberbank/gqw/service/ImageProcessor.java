@@ -24,8 +24,8 @@ import java.util.Optional;
 public class ImageProcessor {
     @Value("${gqw.image.root-folder}")
     private String rootPath;
-    private final String ROOT_FOLDER = File.separator + "image";
-    private final ModelMapper modelMapper = new ModelMapper();
+    private final static String ROOT_FOLDER = File.separator + "image";
+
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
