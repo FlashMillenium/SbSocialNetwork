@@ -24,11 +24,8 @@
         <p><a href="registration.html" th:href="@{/users/photo}">[Link to photo]</a></p>
     </div>
     <div class="col-md-8 text-left">
-        <p th:text="${#httpSession.getAttribute('username')}"></p>
-        <p>First Name</p>
-        <P>Last Name</P>
-        <p>Additional info</p>
-        <br>
+        <p th:text="${userDTO.firstName}"></p>
+        <p th:text="${userDTO.lastName}"></p>
         <br>
         <br>
         <p>Post 1</p>

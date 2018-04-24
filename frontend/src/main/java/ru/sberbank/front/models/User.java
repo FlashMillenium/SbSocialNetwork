@@ -1,69 +1,22 @@
 package ru.sberbank.front.models;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import ru.sberbank.gqw.dto.UserDTO;
 
-/**
- * TODO: comment
- *
- * @author Dmitriy Bobrov (bobrov.dmitriy@gmail.com)
- * @since 09.04.2018
- */
+import java.io.Serializable;
 
+@ToString
+public class User implements Serializable {
+    UserDTO userDTO;
 
-public class User {
-    private Long id;
-    private String username;
-    private String passwordHash;
-    private String firstName;
-
-    private String secondName;
-
-    public Long getId() {
-        return id;
+    public UserDTO getUserDTO() {
+        return userDTO;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserDTO(UserDTO userDTO) {
+        this.userDTO = userDTO;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPasswordHash() {
-        return passwordHash;
-    }
-
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getSecondName() {
-        return secondName;
-    }
-
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", secondName='" + secondName + '\'' +
-                '}';
-    }
 }

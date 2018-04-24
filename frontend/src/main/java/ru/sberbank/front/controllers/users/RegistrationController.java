@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import ru.sberbank.front.services.UserRegistrationService;
 import ru.sberbank.gqw.dto.UserDTO;
 
@@ -25,9 +26,11 @@ public class RegistrationController {
         return "users/registration";
     }
     @RequestMapping(value = "users/registration", method = RequestMethod.POST)
-    public String registrPagePost(HttpServletRequest request) {
+    public ModelAndView registrPagePost(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:login");
 //        Add processing
         ResponseEntity<UserDTO> registrFromMicroserv = userRegistration.getRegistrFromMicroserv(request.getParameter("password"), request.getParameter("login"));
-        return "redirect:login";
+        return modelAndView;
     }
 }

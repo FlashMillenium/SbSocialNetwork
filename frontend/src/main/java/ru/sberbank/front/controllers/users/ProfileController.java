@@ -3,6 +3,7 @@ package ru.sberbank.front.controllers.users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import ru.sberbank.front.services.UserProfileService;
 import ru.sberbank.gqw.dto.UserDTO;
 
@@ -22,10 +23,12 @@ public class ProfileController {
     UserDTO userDTO = new UserDTO();
 
     @RequestMapping(value = "/users/profile")
-    public String profile(HttpSession session) {
+    public ModelAndView profile(HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView();
         String login = (String) session.getAttribute("username");
-        System.out.println(login);
         userDTO = userProfileService.profilePageGet(login);
-        return "users/profile";
+        modelAndView.setViewName("users/profile");
+        modelAndView.addObject("userDTO", userDTO);
+        return modelAndView;
     }
 }
