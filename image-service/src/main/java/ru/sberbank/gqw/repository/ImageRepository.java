@@ -7,7 +7,11 @@ import org.springframework.stereotype.Repository;
 import ru.sberbank.gqw.model.AlbumEntity;
 import ru.sberbank.gqw.model.ImageEntity;
 
+import java.io.File;
+
 @Repository
 public interface ImageRepository extends JpaRepository<ImageEntity, Long> {
     Page<ImageEntity> findAllByAlbum(AlbumEntity albumEntity, Pageable pageable);
+
+    ImageEntity findOneByImagePath(File imagePath);
 }

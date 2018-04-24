@@ -9,4 +9,5 @@ import ru.sberbank.gqw.model.AlbumEntity;
 @Repository
 public interface AlbumRepository extends JpaRepository<AlbumEntity, Long> {
     Page<AlbumEntity> findAllByUserId(Long userId, Pageable pageable);
+
 }
