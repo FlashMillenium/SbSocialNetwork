@@ -27,6 +27,11 @@ public class UserController {
         return userService.getFriends(id, pageable);
     }
 
+    @GetMapping("/friends/{userLogin}")
+    public Page<UserDTO>  getOtherUsers(@PathVariable(value = "userLogin") String userLogin, @PageableDefault Pageable pageable) {
+        return userService.getOtherUsers(userLogin, pageable);
+    }
+
     @PostMapping("/users/add")
     public ResponseEntity<UserDTO> addUser(@RequestBody UserDTO newUser) {
         return userService.addUser(newUser);
