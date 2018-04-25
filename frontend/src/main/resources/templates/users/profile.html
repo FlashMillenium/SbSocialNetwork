@@ -19,13 +19,14 @@
         <img th:src="@{/img/profile_foto_stub.png}" alt="Profile photo" style="width:50%">
         <p><a href="registration.html" th:href="@{/users/edit}">[Link to edit profile]</a></p>
         <p><a href="registration.html" th:href="@{/users/friends}">[Link to friends]</a></p>
-        <p><a href="registration.html" th:href="@{/users/groups}">[Link to groups]</a></p>
+        <p><a href="registration.html" th:href="@{/users/all}">[Link to all users]</a></p>
         <p><a href="registration.html" th:href="@{/users/messages}">[Link to messages]</a></p>
         <p><a href="registration.html" th:href="@{/users/photo}">[Link to photo]</a></p>
     </div>
     <div class="col-md-8 text-left">
         <p th:text="${userDTO.firstName}"></p>
         <p th:text="${userDTO.lastName}"></p>
+        <p th:text="${userDTO.dateOfBirth}"></p>
         <br>
         <br>
         <p>Post 1</p>
