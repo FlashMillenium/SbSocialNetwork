@@ -5,6 +5,10 @@ import ru.sberbank.gqw.entity.Message;
 import java.util.List;
 
 public interface MessageService {
-    public List getAll();
-    public void sendMessage(Message message);
+    List getAll();
+    void sendMessage(Message message);
+    List getAllMessagesForUser(int userId);
+    List getUnreadMessagesForUser(int userId);
+    List getAllMessagesFromUserToUser(int senderId, int recipientId);
+
 }

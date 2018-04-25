@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
@@ -59,5 +60,30 @@ public class MessageController {
         model.addAttribute("message", message);
         return "message.show";
     }
+
+    @RequestMapping(value = "/messages/{userId}")
+    public String showMessagesByUserId(@PathVariable(value = "userId") Integer userId, Model model){
+        logger.info("getting user's messages from DB");
+        model.addAttribute("messages", messageDAOImpl.getAllMessagesForUser(userId));
+        return "message.index";
+    }
+
+    @RequestMapping(value = "/messages/{userId}/from/{senderId}")
+    public String showMessagesBetweenTwoUsers(@PathVariable(value = "userId") Integer userId,
+                                              @PathVariable(value = "senderId") Integer senderId,
+                                              Model model){
+        logger.info("getting user's messages from specific user from DB");
+        model.addAttribute("messages", messageDAOImpl.getAllMessagesFromUserToUser(senderId, userId));
+        return "message.index";
+    }
+
+    @RequestMapping(value = "/messages/{userId}/unread")
+    public String showUnreadMessages(@PathVariable(value = "userId") Integer userId, Model model){
+        logger.info("getting unread user's messages from DB");
+        model.addAttribute("messages", messageDAOImpl.getUnreadMessagesForUser(userId));
+        return "message.index";
+    }
+
+
 
 }
