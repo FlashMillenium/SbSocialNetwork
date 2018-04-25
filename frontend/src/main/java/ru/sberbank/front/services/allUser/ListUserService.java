@@ -2,8 +2,11 @@ package ru.sberbank.front.services.allUser;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import ru.sberbank.gqw.dto.UserDTO;
 
 /**
@@ -18,8 +21,9 @@ public class ListUserService {
     @Autowired
     private ListUser listUser;
 
-    @GetMapping("/friends/{userLogin}")
-    public Page<UserDTO> getOtherUsers(String userLogin) {
-        return listUser.getOtherUsers(userLogin);
+    @PostMapping("/friends/{userLogin}")
+    public Page<UserDTO> getOtherUsers(String userLogin, @PageableDefault
+            Pageable pageable) {
+        return listUser.getOtherUsers(userLogin, pageable);
     }
 }

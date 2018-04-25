@@ -27,7 +27,7 @@ public class UserController {
         return userService.getFriends(id, pageable);
     }
 
-    @GetMapping("/friends/{userLogin}")
+    @PostMapping("/friends/{userLogin}")
     public Page<UserDTO>  getOtherUsers(@PathVariable(value = "userLogin") String userLogin, @PageableDefault Pageable pageable) {
         return userService.getOtherUsers(userLogin, pageable);
     }
