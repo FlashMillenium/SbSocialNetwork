@@ -30,7 +30,7 @@ public class ImageProcessor {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public Optional<ImageEntity> createImageEntity(AlbumEntity albumEntity, String name, byte[] data) {
-        File file = FileUtils.getFile( generatePath(albumEntity),name);
+        File file = FileUtils.getFile(generatePath(albumEntity), name);
         try {
             FileUtils.writeByteArrayToFile(file, data);
         } catch (IOException e) {
@@ -40,29 +40,12 @@ public class ImageProcessor {
         return Optional.of(new ImageEntity(name, file, albumEntity));
     }
 
-    public String generatePath(AlbumEntity albumEntity) {
+    private String generatePath(AlbumEntity albumEntity) {
         return new StringBuilder(rootPath)
                 .append(ROOT_FOLDER)
                 .append(File.separator).append(albumEntity.getUserId())
                 .append(File.separator).append(albumEntity.getId())
                 .append(File.separator)
                 .toString();
-    }
-
-    public String getStr() {
-        String pathToFile = rootPath + "\\image\\35\\1\\";
-        File file = FileUtils.getFile(pathToFile, "nginx.png");
-
-
-        try {
-            byte[] bytes = FileUtils.readFileToByteArray(file);
-            logger.debug("!!!!!!!!FROM LOGGER !!!!!!");
-            System.out.println("!!!!!!!!!");
-            System.out.println(bytes.length);
-            FileUtils.writeByteArrayToFile(new File(rootPath + "\\image\\35\\2\\test.png"), bytes);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 }

@@ -21,5 +21,7 @@ public interface AlbumService {
 
     public ResponseEntity<?> deleteImage(ImageDTO deleteImage);
 
-    public ResponseEntity<ImageDTO> saveImage(Long albumId, String name, byte[] data);
+    public ResponseEntity<ImageDTO> addImage(Long albumId, String name, byte[] data);
+
+    public ResponseEntity<ImageDTO> updateImage(ImageDTO toUpdate);
 }
