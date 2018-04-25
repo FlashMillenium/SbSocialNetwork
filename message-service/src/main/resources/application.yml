@@ -1,13 +1,13 @@
 spring:
  application:
-  name: sn-message-service
+  name: message-service
 
 server:
-  port: 8701
+  port: 9000
 
 eureka:
   instanse:
-    hostname: sn-message-service
+    hostname: message-service
   client:
      serviceUrl:
         defaultZone: http://localhost:8761/eureka/
