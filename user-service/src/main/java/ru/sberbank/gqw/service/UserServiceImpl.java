@@ -41,6 +41,12 @@ public class UserServiceImpl implements UserService {
         return friendsById.map(e -> modelMapper.map(e, UserDTO.class));
     }
 
+   @Override
+    public Page<UserDTO> getOtherUsers(String login, Pageable pageable) {
+        Page<UserEntity> allUsers = userRepository.findAllByLoginNot(login, pageable);
+        return allUsers.map(e -> modelMapper.map(e, UserDTO.class));
+    }
+
     @Override
     public ResponseEntity<UserDTO> addUser(UserDTO newUser) {
         Optional<ResponseEntity<UserDTO>> validateEntity = validateNewUserData(newUser);

@@ -11,6 +11,8 @@ import ru.sberbank.gqw.model.UserEntity;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
+    Page<UserEntity> findAllByLoginNot(String login, Pageable var);
+
     UserEntity getOneByLogin(String login);
 
     @Query("select uf from UserEntity u join u.friends uf where u.id= ?1")

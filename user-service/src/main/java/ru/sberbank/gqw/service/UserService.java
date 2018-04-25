@@ -12,6 +12,7 @@ public interface UserService {
 
     public Page<UserDTO> getFriends(Long id, Pageable pageable);
 
+    public Page<UserDTO> getOtherUsers(String login, Pageable pageable);
 
     public ResponseEntity<UserDTO> addUser(UserDTO newUser);
 
