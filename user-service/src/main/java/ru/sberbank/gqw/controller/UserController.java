@@ -22,7 +22,7 @@ public class UserController {
         return userService.getByLogin(login);
     }
 
-    @GetMapping("/users/{id}/friends")
+    @PostMapping("/users/{id}/friends")
     public Page<UserDTO>  getFriends(@PathVariable(value = "id") Long id, @PageableDefault Pageable pageable) {
         return userService.getFriends(id, pageable);
     }
