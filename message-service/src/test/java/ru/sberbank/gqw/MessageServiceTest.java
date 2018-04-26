@@ -4,19 +4,14 @@ package ru.sberbank.gqw;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.sberbank.gqw.dto.MessageDTO;
 import ru.sberbank.gqw.model.Message;
 import ru.sberbank.gqw.repository.MessageRepository;
 import ru.sberbank.gqw.service.MessageService;
-import ru.sberbank.gqw.service.MessageServiceImpl;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -26,17 +21,7 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-//@AutoConfigureTestDatabase
 public class MessageServiceTest {
-
-    @TestConfiguration
-    static class MessageServiceTestContextConfiguration {
-
-        @Bean
-        public MessageService messageService() {
-            return new MessageServiceImpl();
-        }
-    }
 
     @Autowired
     MessageRepository messageRepository;
@@ -75,7 +60,7 @@ public class MessageServiceTest {
 
     @Test()
     public void sendMessageTest() {
-        MessageDTO messageDTO = new MessageDTO(messages.size()+1,1, 2, "new", LocalDateTime.now(), false);
+        MessageDTO messageDTO = new MessageDTO(messages.size() + 1, 1, 2, "new", LocalDateTime.now(), false);
         assertEquals(HttpStatus.CREATED, messageService.sendMessage(messageDTO).getStatusCode());
     }
 
@@ -117,6 +102,4 @@ public class MessageServiceTest {
         }
 
     }
-
-
 }

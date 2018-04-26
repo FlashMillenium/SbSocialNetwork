@@ -5,8 +5,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.sberbank.gqw.dto.MessageDTO;
 import ru.sberbank.gqw.service.MessageService;
@@ -46,5 +44,4 @@ public class MessageController {
     public ResponseEntity<MessageDTO> sendMessage(@RequestBody MessageDTO newMessage) {
         return messageService.sendMessage(newMessage);
     }
-
 }
