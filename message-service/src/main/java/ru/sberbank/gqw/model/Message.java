@@ -15,7 +15,6 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-//@RequiredArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Message {
 
@@ -38,4 +37,12 @@ public class Message {
 
     @Column(name = "seen")
     private boolean seen;
+
+    public Message(int senderId, int recipientId, String message, boolean seen) {
+        this.senderId = senderId;
+        this.recipientId = recipientId;
+        this.message = message;
+        this.sentAt = LocalDateTime.now();
+        this.seen = seen;
+    }
 }
