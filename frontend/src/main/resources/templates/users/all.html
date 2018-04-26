@@ -17,7 +17,6 @@
                 <th>First Name</th>
                 <th>Second Name</th>
                 <th>Add friends</th>
-                <th>Del Friends</th>
             </tr>
             </thead>
             <tbody>
@@ -26,14 +25,7 @@
                 <td th:text="${user.lastName}"></td>
                 <td>
                     <form method=post th:action="@{/users/add/(id=${user.id})}">
-
                         <button type="submit" class="btn btn-success">Add</button>
-                    </form>
-                </td>
-                <td>
-                    <form method=post th:action="@{/users/del/(id=${user.id})}">
-
-                        <button type="submit" class="btn btn-danger">Del</button>
                     </form>
                 </td>
             </tr>
