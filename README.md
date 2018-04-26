@@ -1,4 +1,4 @@
 # SbSocialNetwork
-For working with this project you must install [https://github.com/VanRoy/spring-cloud-dashboard](https://github.com/VanRoy/spring-cloud-dashboard)
+This project use [https://github.com/VanRoy/spring-cloud-dashboard](https://github.com/VanRoy/spring-cloud-dashboard) as dependency.
 
-Download project, and run maven install goal from your mvn cli or IDE.
+If you have trouble with loading spring-cloud-dashboard please download project, and run maven install goal from your mvn cli or IDE.
