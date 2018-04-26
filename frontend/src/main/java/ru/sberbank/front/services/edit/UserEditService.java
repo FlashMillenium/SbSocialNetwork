@@ -1,4 +1,4 @@
-package ru.sberbank.front.services;
+package ru.sberbank.front.services.edit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,12 +16,12 @@ import java.time.format.DateTimeFormatter;
 public class UserEditService {
     @Autowired
     private UserEdit userEdit;
-    UserDTO userDTO;
+    private UserDTO userDTO;
 
     public UserDTO updateValue(HttpServletRequest request, String username) {
         userDTO = getByLogin(username).getBody();
         userDTO.setFirstName(request.getParameter("firstName"));
-        userDTO.setLastName(request.getParameter("secondName"));
+        userDTO.setLastName(request.getParameter("lastName"));
         userDTO.setDateOfBirth(convert(request.getParameter("dateOfBirth")));
         return updateUser(userDTO).getBody();
     }

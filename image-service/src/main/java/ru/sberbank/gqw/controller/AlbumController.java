@@ -43,7 +43,11 @@ public class AlbumController {
     }
 
     @PostMapping("/images/{albumId}")
-    public ResponseEntity<ImageDTO> saveImage(@PathVariable(value = "albumId") Long albumId, @RequestBody String name, @RequestBody byte[] data) {
-        return albumService.saveImage(albumId, name, data);
+    public ResponseEntity<ImageDTO> addImage(@PathVariable(value = "albumId") Long albumId, @RequestBody String name, @RequestBody byte[] data) {
+        return albumService.addImage(albumId, name, data);
+    }
+    @PostMapping("/images/")
+    public ResponseEntity<ImageDTO> updateImage(@RequestBody ImageDTO toUpdate) {
+        return albumService.updateImage(toUpdate);
     }
 }

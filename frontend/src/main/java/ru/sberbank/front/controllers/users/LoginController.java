@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import ru.sberbank.front.services.UsersLoginService;
+import ru.sberbank.front.services.login.UsersLoginService;
 import ru.sberbank.gqw.dto.UserDTO;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,9 +14,6 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
-
-
-
 
 @Autowired
 UsersLoginService usersLoginService;
@@ -34,7 +31,13 @@ UsersLoginService usersLoginService;
         ModelAndView modelAndView = new ModelAndView();
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        ResponseEntity<UserDTO> loginFromMicroserv = usersLoginService.getLoginFromMicroserv(login);
+        ResponseEntity<UserDTO> loginFromMicroserv = null;
+        try {
+            loginFromMicroserv = usersLoginService.getLoginFromMicroserv(login);
+        } catch (Exception e) {
+            modelAndView.setViewName("redirect:login");
+            return modelAndView;
+        }
         if (loginFromMicroserv.getBody().getPassword().equals(password)) {
             session.setAttribute("username", login);
             modelAndView.addObject("userDTO", loginFromMicroserv.getBody());

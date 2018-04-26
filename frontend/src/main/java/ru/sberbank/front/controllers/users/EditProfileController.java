@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import ru.sberbank.front.services.UserEditService;
+import ru.sberbank.front.services.edit.UserEditService;
 import ru.sberbank.gqw.dto.UserDTO;
 
 import javax.servlet.http.HttpServletRequest;

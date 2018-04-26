@@ -123,7 +123,7 @@ public class UserServiceImpl implements UserService {
         UserEntity fromBD = userRepository.getOne(updateUser.getId());
         toUpdate.setFriends(fromBD.getFriends());
         userRepository.saveAndFlush(toUpdate);
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
@@ -139,7 +139,7 @@ public class UserServiceImpl implements UserService {
         UserEntity friend = userRepository.getOne(friendId);
         friendHolder.getFriends().add(friend);
         userRepository.saveAndFlush(friendHolder);
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
@@ -155,7 +155,7 @@ public class UserServiceImpl implements UserService {
         UserEntity friend = userRepository.getOne(friendId);
         friendHolder.getFriends().remove(friend);
         userRepository.saveAndFlush(friendHolder);
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     private Optional<ResponseEntity<?>> validateFriendData(Long id, Long friendId) {

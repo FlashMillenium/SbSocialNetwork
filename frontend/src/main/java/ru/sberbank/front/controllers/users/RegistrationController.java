@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import ru.sberbank.front.services.UserRegistrationService;
+import ru.sberbank.front.services.registr.UserRegistrationService;
 import ru.sberbank.gqw.dto.UserDTO;
 
 import javax.servlet.http.HttpServletRequest;

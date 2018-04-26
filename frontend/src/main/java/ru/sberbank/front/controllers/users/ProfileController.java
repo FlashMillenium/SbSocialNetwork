@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 public class ProfileController {
     @Autowired
     UserProfileService userProfileService;
-    UserDTO userDTO = new UserDTO();
+    UserDTO userDTO;
 
     @RequestMapping(value = "/users/profile")
     public ModelAndView profile(HttpSession session) {

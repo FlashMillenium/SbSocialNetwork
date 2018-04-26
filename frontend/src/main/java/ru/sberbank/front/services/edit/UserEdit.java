@@ -1,4 +1,4 @@
-package ru.sberbank.front.services;
+package ru.sberbank.front.services.edit;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.http.ResponseEntity;
@@ -10,9 +10,9 @@ import ru.sberbank.gqw.dto.UserDTO;
 @FeignClient(name = "user-service")
 public interface UserEdit {
     @PutMapping("/users/update")
-    public ResponseEntity<UserDTO> updateUser(UserDTO updateUser);
+    ResponseEntity<UserDTO> updateUser(UserDTO updateUser);
 
     @GetMapping("/users/{login}")
-    public ResponseEntity<UserDTO> getByLogin(@PathVariable(value = "login") String login);
+    ResponseEntity<UserDTO> getByLogin(@PathVariable(value = "login") String login);
 
 }

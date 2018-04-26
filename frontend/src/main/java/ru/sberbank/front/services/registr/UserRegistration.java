@@ -1,4 +1,4 @@
-package ru.sberbank.front.services;
+package ru.sberbank.front.services.registr;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.http.ResponseEntity;
