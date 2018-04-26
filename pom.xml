@@ -50,6 +50,7 @@
         <module>user-service</module>
         <module>frontend</module>
         <module>image-service</module>
+        <module>message-service</module>
     </modules>
 
 </project>
