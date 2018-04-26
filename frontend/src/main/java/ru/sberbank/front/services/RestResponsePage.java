@@ -1,4 +1,4 @@
-package ru.sberbank.front.services.allUser;
+package ru.sberbank.front.services;
 
 import lombok.Getter;
 import lombok.Setter;
