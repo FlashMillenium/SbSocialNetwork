@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: site-head">
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Edit Profile</title>
+    </head>
+<body>
+<header th:replace="layout :: site-logo"/>
+<div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+        <form action="/users/photoaddalbum" method="post">
+            <div class="form-group">
+                <label for="Albumname">Album name:</label>
+                <input name="Albumname" type="text" class="form-control" id="Albumname">
+
+                <br>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-4"></div>
+</div>
+
+</body>
+</html>

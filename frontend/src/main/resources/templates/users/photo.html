@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: site-head">
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Photo</title>
+    </head>
+<body>
+<header th:replace="layout :: site-logo"/>
+<div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4" style="text-align:center">
+        <!--<table class="table">-->
+        <!--<thead>-->
+        <!--<tr>-->
+        <!--<th>Album Name</th>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody>-->
+        <!--<tr th:each="albums : ${albums}">-->
+        <!--<td th:text="${albums.name}"></td>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+        <!--</table>-->
+        <p><a th:href="@{/users/photoaddalbum}">Add album</a></p>
+    </div>
+    <div class="col-sm-4"></div>
+</div>
+>
+
+</body>
+</html>
