@@ -53,6 +53,15 @@ public class PhotoController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "users/photoaddalbum", method = RequestMethod.GET)
+    public ModelAndView photoAddAlbum(HttpSession session, HttpServletRequest request) {
+        albumDTO = new AlbumDTO();
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("users/photoaddalbum");
+        user = userLogin.getByLogin((String) session.getAttribute("username"));
+        userPhoto.getUserAlbums(user.getBody().getId(), new PageRequest(0, 10));
+        return modelAndView;
+    }
     @RequestMapping(value = "users/photoaddalbum", method = RequestMethod.POST)
     public ModelAndView photoAddAlbumPost(HttpSession session, HttpServletRequest request) {
         albumDTO = new AlbumDTO();
