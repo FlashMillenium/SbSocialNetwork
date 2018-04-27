@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.File;
+import java.net.URL;
 
 @Entity
 @Table(name = "images")
@@ -25,8 +26,12 @@ public class ImageEntity {
     private String name;
 
     @NonNull
-    @Column(name = "image_uri", nullable = false)
+    @Column(name = "image_path", nullable = false)
     private File imagePath;
+
+    @NonNull
+    @Column(name = "image_url", nullable = false)
+    private URL imageURL;
 
     @NonNull
     @ManyToOne

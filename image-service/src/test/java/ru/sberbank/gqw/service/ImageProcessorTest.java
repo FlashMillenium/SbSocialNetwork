@@ -12,6 +12,9 @@ import ru.sberbank.gqw.model.ImageEntity;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
@@ -22,7 +25,7 @@ public class ImageProcessorTest {
     ImageProcessor ip;
 
     @Test
-    public void checkFileIsWrittenInNeededFolder() throws IOException {
+    public void checkFileIsWrittenInNeededFolder() throws IOException, URISyntaxException {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         String file = classloader.getResource("nginx.png").getFile();
         byte[] bytes = FileUtils.readFileToByteArray(new File(file));
@@ -30,7 +33,14 @@ public class ImageProcessorTest {
         albumEntity.setId(42L);
         Optional<ImageEntity> imageEntity = ip.createImageEntity(albumEntity, "test.png", bytes);
         assertTrue(imageEntity.isPresent());
+        assertEquals(200,  getResponseCode(imageEntity.get()));;
         assertTrue(imageEntity.get().getImagePath().exists());
-        assertTrue(new File("target\\test-classes\\image\\5\\42\\test.png").exists());
+        assertTrue(new File("C:\\\\Users\\\\mal\\\\Documents\\image\\5\\42\\test.png").exists());
+    }
+
+    private int getResponseCode(ImageEntity imageEntity) throws IOException {
+        final URL url = imageEntity.getImageURL();
+        HttpURLConnection urlConnection =  (HttpURLConnection) url.openConnection();
+        return urlConnection.getResponseCode();
     }
 }

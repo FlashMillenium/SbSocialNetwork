@@ -17,6 +17,8 @@ import ru.sberbank.gqw.repository.ImageRepository;
 
 import javax.transaction.Transactional;
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -35,10 +37,10 @@ public class EntityConverterTest {
     private EntityConverter entityConverter;
 
     @Before
-    public void setUp() {
+    public void setUp() throws MalformedURLException {
         AlbumEntity albumEntity = new AlbumEntity(5L, "testEntity");
         albumRepository.saveAndFlush(albumEntity);
-        ImageEntity testImage = new ImageEntity("testImage", new File(""), albumEntity);
+        ImageEntity testImage = new ImageEntity("testImage", new File(""), new URL("http://localhost/"), albumEntity);
         imageRepository.saveAndFlush(testImage);
         albumEntity.setAlbumCover(testImage);
         testImage.setDescription("This description must equals copy object");
@@ -77,7 +79,8 @@ public class EntityConverterTest {
         ImageEntity expected = imageRepository.findAll().get(0);
         expected.setDescription("i'm input object!");
         ImageDTO input = ImageDTO.builder().id(expected.getId()).albumId(expected.getAlbum().getId())
-                .imagePath(expected.getImagePath()).name(expected.getName()).description(expected.getDescription()).build();
+                .imagePath(expected.getImagePath()).name(expected.getName())
+                .description(expected.getDescription()).imageUrl(expected.getImageURL()).build();
         ImageEntity actual = entityConverter.convert(input);
         assertEquals(expected.getId(), actual.getId());
         assertEquals(expected.getAlbum(), actual.getAlbum());
