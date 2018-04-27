@@ -78,7 +78,7 @@ public class PhotoController {
     @RequestMapping(value = "users/photoalbum", method = RequestMethod.GET)
     public ModelAndView photoFromAlbumGet(HttpSession session, @RequestParam("id") long id) {
         ModelAndView modelAndView = new ModelAndView();
-
+        session.setAttribute("id", id);
         modelAndView.setViewName("users/photoalbum");
         RestResponsePage<ImageDTO> photos = userPhoto.getImagesFromAlbum(id, new PageRequest(0, 10));
         modelAndView.addObject("album", photos.getContent());
@@ -86,16 +86,17 @@ public class PhotoController {
     }
 
     @RequestMapping(value = "users/photoalbum", method = RequestMethod.POST)
-    public ModelAndView photoFromAlbumPost(@RequestParam("file") MultipartFile file) {
+    public ModelAndView photoFromAlbumPost(HttpSession session, @RequestParam("file") MultipartFile file) {
+        long idAlbum = (long) session.getAttribute("id");
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("users/photoalbum");
+        modelAndView.setViewName("redirect:photoalbum");
         byte[] bytes = null;
         try {
             bytes = file.getBytes();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        userPhoto.addImage(1L, "unnamed.jpg", bytes);
+        userPhoto.addImage(idAlbum, file.getOriginalFilename().toLowerCase(), bytes);
         return modelAndView;
     }
 
