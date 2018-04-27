@@ -134,9 +134,9 @@ public class UserServiceTest {
         UserDTO friendForAll = userService.getByLogin("friendForAll").getBody();
         UserDTO toDelete = userService.getByLogin("father").getBody();
         ResponseEntity<?> responseEntity = userService.deleteFriend(friendForAll.getId(), toDelete.getId());
-        assertEquals(HttpStatus.ACCEPTED, responseEntity.getStatusCode());
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         ResponseEntity<?> mustBeIdempotent = userService.deleteFriend(friendForAll.getId(), toDelete.getId());
-        assertEquals(HttpStatus.ACCEPTED, mustBeIdempotent.getStatusCode());
+        assertEquals(HttpStatus.OK, mustBeIdempotent.getStatusCode());
         Set<UserEntity> actualFriends = userRepository.getOneByLogin("friendForAll").getFriends();
         assertEquals(2, actualFriends.size());
         boolean mustAbsent = actualFriends.stream().map(UserEntity::getLogin).anyMatch("father"::equals);
