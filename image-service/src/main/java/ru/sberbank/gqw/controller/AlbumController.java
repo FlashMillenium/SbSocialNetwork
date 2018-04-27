@@ -17,12 +17,12 @@ public class AlbumController {
     @Autowired
     AlbumService albumService;
 
-    @GetMapping("/albums/{userId}")
+    @PostMapping("/albums/{userId}")
     public Page<AlbumDTO> getUserAlbums(@PathVariable(value = "userId") Long userId, @PageableDefault Pageable pageable) {
         return albumService.getUserAlbums(userId, pageable);
     }
 
-    @GetMapping("/images/{albumId}")
+    @PostMapping("/images/{albumId}")
     public Page<ImageDTO> getImagesFromAlbum(@PathVariable(value = "albumId") Long albumId, @PageableDefault Pageable pageable) {
         return albumService.getImagesFromAlbum(albumId, pageable);
     }
@@ -42,7 +42,7 @@ public class AlbumController {
         return albumService.deleteImage(deleteImage);
     }
 
-    @PostMapping("/images/{albumId}/{name}")
+    @PutMapping("/images/{albumId}/{name}")
     public ResponseEntity<ImageDTO> addImage(@PathVariable(value = "albumId") Long albumId, @PathVariable(value = "name")  String name, @RequestBody byte[] data) {
         return albumService.addImage(albumId, name, data);
     }
