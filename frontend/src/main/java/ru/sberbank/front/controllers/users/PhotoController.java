@@ -76,8 +76,9 @@ public class PhotoController {
     }
 
     @RequestMapping(value = "users/photoalbum", method = RequestMethod.GET)
-    public ModelAndView photoFromAlbumGet(@RequestParam("id") long id) {
+    public ModelAndView photoFromAlbumGet(HttpSession session, @RequestParam("id") long id) {
         ModelAndView modelAndView = new ModelAndView();
+
         modelAndView.setViewName("users/photoalbum");
         RestResponsePage<ImageDTO> photos = userPhoto.getImagesFromAlbum(id, new PageRequest(0, 10));
         modelAndView.addObject("album", photos.getContent());
@@ -94,9 +95,7 @@ public class PhotoController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(bytes.length);
-//        System.out.println(id + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        userPhoto.addImage(1L, "aaa", bytes);
+        userPhoto.addImage(1L, "unnamed.jpg", bytes);
         return modelAndView;
     }
 

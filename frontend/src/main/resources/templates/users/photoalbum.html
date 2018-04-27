@@ -16,8 +16,22 @@
             Name1: <input type="text" name="name"><br/> <br/>
             <input type="submit" value="Upload"> Press here to upload the file!
         </form>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Photo</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="album : ${album}">
+                <td><img th:src="${album.imageUrl}" alt="Photo from DB" style="width:60%"></td>
+                <!--<td th:img="${album.imageUrl}"></td>-->
+            </tr>
+            </tbody>
+            <div class="col-md-4"></div>
+        </table>
     </div>
-    <div class="col-md-4"></div>
+
 </div>
 </body>
 </html>
