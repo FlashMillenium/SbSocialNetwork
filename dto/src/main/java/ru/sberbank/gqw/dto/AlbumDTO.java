@@ -11,11 +11,14 @@ import java.io.File;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 public class AlbumDTO {
     private Long id;
 
+    @NonNull
     private Long userId;
 
+    @NonNull
     private String name;
 
     private Long albumCoverId;

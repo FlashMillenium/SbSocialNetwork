@@ -42,8 +42,8 @@ public class AlbumController {
         return albumService.deleteImage(deleteImage);
     }
 
-    @PostMapping("/images/{albumId}")
-    public ResponseEntity<ImageDTO> addImage(@PathVariable(value = "albumId") Long albumId, @RequestBody String name, @RequestBody byte[] data) {
+    @PostMapping("/images/{albumId}/{name}")
+    public ResponseEntity<ImageDTO> addImage(@PathVariable(value = "albumId") Long albumId, @PathVariable(value = "name")  String name, @RequestBody byte[] data) {
         return albumService.addImage(albumId, name, data);
     }
     @PostMapping("/images/")
