@@ -43,7 +43,6 @@ public class EntityConverter {
     }
 
     public AlbumDTO convert(AlbumEntity albumEntity) {
-        System.out.println(albumEntity);
         AlbumDTO result = modelMapper.map(albumEntity, AlbumDTO.class);
         logger.debug("Convert {} tp {}", albumEntity, result);
         return result;

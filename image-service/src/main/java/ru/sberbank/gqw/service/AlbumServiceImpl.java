@@ -119,6 +119,11 @@ public class AlbumServiceImpl implements AlbumService {
             logger.warn("Input wrong image data with wrong path to file: {}", image);
             return Optional.of(error);
         }
+        if (Objects.isNull(image.getImageUrl())) {
+            ResponseEntity<ImageDTO> error = generateErrorResponse(headerName, "Image url is empty");
+            logger.warn("Input wrong image data with wrong url {}", image);
+            return Optional.of(error);
+        }
         if (Objects.isNull(image.getName()) || image.getName().length() == 0) {
             ResponseEntity<ImageDTO> error = generateErrorResponse(headerName, "Image name is empty or null.");
             logger.warn("Input wrong image data with wrong image name: {}", image);

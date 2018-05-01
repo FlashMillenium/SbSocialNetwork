@@ -32,16 +32,6 @@ import static org.junit.Assert.*;
 @SpringBootTest
 @AutoConfigureTestDatabase
 public class UserServiceTest {
-
-    @TestConfiguration
-    static class UserServiceTestContextConfiguration {
-
-        @Bean
-        public UserService userService() {
-            return new UserServiceImpl();
-        }
-    }
-
     @Autowired
     UserRepository userRepository;
 
